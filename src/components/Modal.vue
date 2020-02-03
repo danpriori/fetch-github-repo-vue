@@ -17,7 +17,7 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              <v-btn small @click="$emit('close')">OK</v-btn>
+              <v-btn @click="$emit('close')">OK</v-btn>
             </slot>
           </div>
         </div>

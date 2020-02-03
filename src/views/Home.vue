@@ -2,7 +2,7 @@
   <div class="home">
     <div class="input-container">
       <div class="input-group">
-        <input type="text" v-model="repo" />
+        <input type="text" v-on:keypress.enter="searchRepo" v-model="repo" />
         <button @click="searchRepo" type="submit">
           Search Repo
         </button>
@@ -11,7 +11,6 @@
             <v-progress-circular
               v-if="showLoading"
               indeterminate
-              color="amber"
             ></v-progress-circular>
           </div>
         </transition>
@@ -49,7 +48,6 @@ export default {
     searchRepo() {
       this.repoName = this.repo;
       this.$store.commit("searchRepoName", this.repoName);
-      this.$forceUpdate();
     },
     checkLoading(isLoading) {
       this.isLoading = isLoading;
@@ -60,9 +58,10 @@ export default {
 
 <style lang="scss">
 // variables
-$gray-solid1-border: 1px solid #5d5f63;
-$white: rgb(197, 197, 197);
+$gray-solid1-border: 1px solid #878788;
+$white: rgb(230, 230, 230);
 $gray: #5d5f63;
+$light-blue: #1c72d4;
 
 .home {
   padding-top: 100px;
@@ -96,7 +95,7 @@ $gray: #5d5f63;
         width: 150px;
         height: 50px;
         -webkit-appearance: none;
-        background: $gray;
+        background: $light-blue;
         color: $white;
         text-transform: uppercase;
         border: none;
