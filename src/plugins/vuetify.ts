@@ -15,8 +15,5 @@ export default new Vuetify({
       iconFork: "mdi-source-fork",
       iconGithubLink: "mdi-github-circle"
     }
-  },
-  theme: {
-    dark: true
   }
 });
