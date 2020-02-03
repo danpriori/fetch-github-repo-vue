@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import Repo from "@/components/Repo";
+import RepoContent from "@/components/RepoContent";
 import RepoService from "@/services/RepoService";
 
 export default {
@@ -42,7 +42,7 @@ export default {
     }
   },
   components: {
-    repo: Repo
+    repo: RepoContent
   },
   methods: {
     getBookmarks() {

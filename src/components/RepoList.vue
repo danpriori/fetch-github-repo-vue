@@ -3,20 +3,21 @@
     <div class="msg">{{ msg }}</div>
     <div class="repolist-columns">
       <div class="repolist">
-        <repo
-          v-for="(repo, index) in repos"
-          :key="index"
-          :repo="repo"
-          :arrayIndex="index"
-        >
-        </repo>
+        <transition-group name="fade">
+          <repo
+            v-for="(repo, index) in repos"
+            :key="`key-${index}`"
+            :repo="repo"
+          >
+          </repo>
+        </transition-group>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Repo from "@/components/Repo";
+import RepoContent from "@/components/RepoContent";
 import RepoService from "@/services/RepoService";
 
 export default {
@@ -35,7 +36,7 @@ export default {
     }
   },
   components: {
-    repo: Repo
+    repo: RepoContent
   },
   methods: {
     async getRepositories() {
