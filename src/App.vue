@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <div id="header-nav" class="nav-bars">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/bookmarks">
-        <v-badge
-          color="rgba(155, 40, 40, 0.5)"
-          bordered
-          :value="getBookmarks"
-          :content="getBookmarks"
-        >
-          Bookmarks
-        </v-badge>
-      </router-link>
+    <div class="nav">
+      <div id="header-nav" class="nav-bars">
+        <v-tabs>
+          <v-tab to="/">
+            Home
+          </v-tab>
+          <v-tab to="/bookmarks">
+            <v-badge
+              color="rgba(155, 40, 40, 0.9)"
+              bordered
+              :value="getBookmarks"
+              :content="getBookmarks"
+            >
+              Bookmarks
+            </v-badge>
+          </v-tab>
+        </v-tabs>
+      </div>
     </div>
     <router-view />
   </div>
@@ -30,9 +36,9 @@ export default {
 
 <style lang="scss">
 // variables
-$main-bg-color: #6c7686;
+$main-bg-color: #589ceb;
 $header-bg-color: #494f5a;
-$text-color-white: rgb(197, 197, 197);
+$text-color-white: rgb(138, 138, 138);
 $text-color-white-hover: rgb(236, 236, 236);
 
 body {
@@ -45,25 +51,21 @@ body {
   text-align: center;
   color: #2c3e50;
   background: $main-bg-color;
-  .nav-bars {
-    background: $header-bg-color;
-    position: fixed;
+  .nav {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    padding: 20px 10px 10px 10px;
-    color: $text-color-white;
-
-    a {
+    position: fixed;
+    background: #fff;
+    -webkit-box-shadow: 0px 10px 18px -1px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 0px 10px 18px -1px rgba(0, 0, 0, 0.33);
+    box-shadow: 0px 10px 18px -1px rgba(0, 0, 0, 0.33);
+    .nav-bars {
       color: $text-color-white;
-      text-decoration: none;
-      :hover {
-        color: $text-color-white-hover;
+      a {
+        color: $text-color-white;
       }
     }
-  }
-
-  #header-nav {
-    top: 0;
-    left: 0;
   }
 
   #footer-nav {
