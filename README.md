@@ -1,5 +1,4 @@
-# fetch-github-repo-vue
-Small project for fetching Github repositories from Github API with Vue and Vuex
+# github-fetch-project
 
 ## Project setup
 ```
