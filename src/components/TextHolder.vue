@@ -16,7 +16,7 @@ export default {
   props: ["width", "height", "center", "showContent"],
   computed: {
     styleObj() {
-      if (this.showContent) {
+      if (this.showContent && this.showContent != "") {
         return {
           width: this.width,
           hetight: this.height
