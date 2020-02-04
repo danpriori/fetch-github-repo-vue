@@ -82,7 +82,8 @@ export default {
       stars: 0,
       forks: 0,
       readmeText: "",
-      isLoading: false
+      isLoading: false,
+      latestDate: ""
     };
   },
   mounted() {
@@ -102,6 +103,7 @@ export default {
     showModal(show) {
       if (show) {
         this.requestReadme();
+        this.requestLatestDate();
       } else {
         this.readmeText = "";
       }
@@ -143,7 +145,7 @@ export default {
       return this.repo.name;
     },
     repoUpdated() {
-      return this.repo.updated_at;
+      return this.latestDate;
     },
     repoDescription() {
       return this.repo.description ? this.repo.description : "";
@@ -170,10 +172,8 @@ export default {
         responseDownloadLink => {
           RepoService.getCustom(responseDownloadLink.data.download_url).then(
             responseReadme => {
-              this.$nextTick(() => {
-                this.readmeText = responseReadme.data;
-                this.isLoading = false;
-              });
+              this.readmeText = responseReadme.data;
+              this.isLoading = false;
             }
           );
         },
@@ -182,6 +182,12 @@ export default {
           this.readmeText = "No Readme found";
         }
       );
+    },
+    requestLatestDate() {
+      let branchUrl = this.repo.url + "/branches/master";
+      RepoService.getCustom(branchUrl).then(responseBranchContent => {
+        this.latestDate = responseBranchContent.data.commit.commit.author.date;
+      });
     },
     toggleBookmark() {
       const reposFound = this.getBookmark(this.repo.id);
